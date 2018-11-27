@@ -1,29 +1,49 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <VApp>
+    <VContent>
+      <VContainer fill-height>
+        <VLayout
+          :style="styles"
+          align-content-center
+          mx-auto
+          wrap
+        >
+          <VFlex xs12>
+            <VFadeTransition hide-on-leave>
+              <RouterView />
+            </VFadeTransition>
+          </VFlex>
+
+          <Footer />
+        </VLayout>
+      </VContainer>
+    </VContent>
+
+    <Snackbar />
+  </VApp>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  export default {
+    name: 'App',
+
+    components: {
+      Footer: () => import('@/components/Footer'),
+      Snackbar: () => import('@/components/Snackbar')
+    },
+
+    computed: {
+      maxWidth () {
+        switch (this.$route.path) {
+          case '/auth/signin': return '500'
+          default: return '900'
+        }
+      },
+      styles () {
+        return {
+          maxWidth: `${this.maxWidth}px`
+        }
+      }
     }
   }
-}
-</style>
+</script>
