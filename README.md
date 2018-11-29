@@ -1,4 +1,5 @@
 # vuex-cognito-example
+[📖 Documentation](https://cognito.vuetifyjs.com)
 
 ## Project setup
 ```
