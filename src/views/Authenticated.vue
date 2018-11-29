@@ -57,6 +57,7 @@
 
         this.signOut().finally(() => {
           this.isLoading = false
+          this.$router.push('/signin')
         })
       }
     }

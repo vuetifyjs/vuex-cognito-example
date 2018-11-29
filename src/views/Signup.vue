@@ -43,6 +43,7 @@
                       :rules="[rules.required('Enter your email address')]"
                       label="Email"
                       hint="You can use letters, numbers & periods"
+                      name="email"
                       persistent-hint
                     />
                   </VFlex>
@@ -112,7 +113,7 @@
               contain
             />
             <div class="flex-grow subheading font-weight-regular text-xs-center">
-              One account. All of Vuetify working for you.
+              One account. All of Vuetify<br>working for you.
             </div>
           </VFlex>
         </VLayout>
@@ -171,7 +172,7 @@
               msg: 'Account created. Check your email for verification'
             })
 
-            this.$router.push('/signin')
+            this.$router.push('/authenticated')
           })
           .catch(err => {
             this.setSnackbar({

@@ -11,8 +11,7 @@ const store = new Vuex.Store({
     isLoading: false,
     isReady: false,
     password: '',
-    snackbar: {},
-    user: null
+    snackbar: {}
   },
   mutations: {
     setEmail: set('email'),

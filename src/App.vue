@@ -1,5 +1,5 @@
 <template>
-  <VApp>
+  <VApp v-show="isReady">
     <VContent>
       <VContainer fill-height>
         <VLayout
@@ -24,6 +24,12 @@
 </template>
 
 <script>
+  // Utilities
+  import {
+    mapGetters,
+    mapState
+  } from 'vuex'
+
   export default {
     name: 'App',
 
@@ -33,6 +39,8 @@
     },
 
     computed: {
+      ...mapGetters('cognito', ['isLoggedIn']),
+      ...mapState(['isReady']),
       maxWidth () {
         switch (this.$route.path) {
           case '/auth/signin': return '500'
@@ -43,6 +51,12 @@
         return {
           maxWidth: `${this.maxWidth}px`
         }
+      }
+    },
+
+    watch: {
+      isReady (val) {
+        if (val && this.isLoggedIn) this.$router.push('/authenticated')
       }
     }
   }

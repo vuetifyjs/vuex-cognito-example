@@ -91,6 +91,7 @@
     methods: {
       ...mapActions('cognito', ['signInUser']),
       ...mapMutations([
+        'setEmail',
         'setPassword',
         'setIsLoading',
         'setSnackbar'
@@ -107,6 +108,9 @@
               type: 'success',
               msg: `Successfully signed in user ${this.email}`
             })
+
+            this.setEmail('')
+            this.$router.push('/authenticated')
           })
           .catch(res => {
             this.setSnackbar({
@@ -114,7 +118,10 @@
               msg: res
             })
           })
-          .finally(this.setIsLoading)
+          .finally(() => {
+            this.setIsLoading(false)
+            this.setPassword('')
+          })
       }
     }
   }

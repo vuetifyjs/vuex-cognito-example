@@ -7,7 +7,10 @@
           class="mb-3 mx-auto"
           width="80"
         />
-        <VWindow v-model="model">
+        <VWindow
+          v-model="model"
+          lazy
+        >
           <VWindowItem>
             <Email @next="model++" />
           </VWindowItem>
